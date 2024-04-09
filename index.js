@@ -1,28 +1,29 @@
 const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
-const product = require('./models/product.model');
-const Product = require("./models/product.model");
-const { typography } = require("@chakra-ui/react");
-// const uri =
+const cors = require('cors');
+
+
+// middleware
+const corOption = {
+  origin : 'https:localhost:8081'
+}
+
+// Router
+const router = require('./routes/productRouter.js')
+
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
+app.use(cors(corOption));
 
-mongoose.connect(
-"mongodb+srv://sahilnegipang:6uguQjLO8tGqTtzH@backenddb.ugqqlvr.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB")
-.then(()=>{
-  console.log("Connected");
-})
-.catch((err)=>{
-  console.log(err);
-})
+app.use('/api/products', router);
+
+const PORT =  8080;
+
+// const productRoutes = require('./routes/product.route')
 
 
-
-const productRoutes = require('./routes/product.route')
-
-
-app.use("/api/products" , productRoutes);
+// app.use("/api/products" , productRoutes);
 
 
 
@@ -30,6 +31,6 @@ app.get("/", (req, res) => {
      res.send("Hello , JI ");
   });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });

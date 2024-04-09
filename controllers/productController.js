@@ -1,5 +1,6 @@
-const Products = require('../models/productModel');
-console.log(Products  , "csljk");
+const db  = require('../models');
+const Product = db.products;
+
 // create main Model 
 
 

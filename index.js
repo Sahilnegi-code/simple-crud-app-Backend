@@ -20,12 +20,6 @@ app.use('/api/products', router);
 
 const PORT =  8080;
 
-// const productRoutes = require('./routes/product.route')
-
-
-// app.use("/api/products" , productRoutes);
-
-
 
 app.get("/", (req, res) => {
      res.send("Hello , JI ");
